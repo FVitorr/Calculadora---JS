@@ -1,12 +1,10 @@
-console.log('Js Init');
 const $ = document.querySelector.bind(document);
-const $_ = document.querySelectorAll.bind(document);
 
 let body  =  $("body");
 let display = $(".display")
 let calculator = $(".body_calculator")
 let keyboard = $(".keyboard");
-let input = $_("input");
+let button = document.querySelectorAll("#colorMode");
 
 //Bloco para criar as teclas na tela
 let keyl = [7,8,9,"/",4,5,6,"X",1,2,3,"-",0,".","=","+"];
@@ -104,19 +102,28 @@ function subValue(value){
 let color = 0 // 0-White 1-Black
 
 //Mode Dark
+/* 
+Alterar cor body
+Alterar cor body_calculator
+Alterar cor display
+Alterar cor buttons 
 
-function black(){
-    calculator.classList.toggle("b_dark");
-    display.style.backgroundColor = "rgb(16,15,32)";
-    calculator.style.backgroundColor = "rgb(34,37,45)";
-    keyboard.style.backgroundColor = "rgb(42,45,55)";
-    for (i in input){
-        input[i].style.backgroundColor = "rgb(40,43,51)";
+<button class="firt" onclick="white()"><i class="fa-solid fa-sun"></i></button>
+*/
+let input = document.querySelectorAll("input");
+
+let btnColorMode = document.querySelector("#colorMode");
+btnColorMode.addEventListener("click", ()=>{
+    console.log()
+    body.classList.toggle("body_dark")
+    calculator.classList.toggle("body_calculator_dark")
+    display.classList.toggle("display_dark")
+    for (let i = 0; i < input.length; i++){
+        console.log(i)
+        input[i].classList.toggle("button_dark")
     }
-    console.log("Black");
-}
-
-function white(){
-    calculator.classList.toggle("body_calculator");
-    console.log("White");
-}
+    //button.classList.toggle("button_dark")
+    button.innerHTML = "<i class='fa-solid fa-sun'></i>"
+//    bodyColor.classList.toggle("bodyDark")
+//    navBottom.classList.toggle("nav-bottom-dark")
+})

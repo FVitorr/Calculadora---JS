@@ -3,10 +3,7 @@
     padding: 0;
     font-size: 22px;
 }
-/*Modo Dark CSS*/
-.b_dark {
-    background-color: rgb(8,7,19);
-}
+
 body{
     display: flex;
     flex-direction: row;
@@ -19,10 +16,11 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 1%;
     width: 400px;
     height: 600px;
     border-radius: 40px;
+    background-color: #fff;
 }
 .theme{
     margin: 10px 0px;
@@ -88,4 +86,27 @@ body{
 }
 .signals{
     color: rgb(209, 124, 128);
+}
+
+
+/*Modo Dark CSS*/
+.body_dark {
+    background-color: rgb(8,7,19);
+}
+.body_calculator_dark{
+    background-color: rgb(16,15,32);
+    color: white;
+}
+.display_dark{
+    background-color: rgb(23, 20, 60);
+}
+
+.keyboard .button_dark {
+    background-color: rgb(23, 20, 60);  
+    color: #fff;
+}
+
+.theme .button_dark{
+    background-color: rgb(23, 20, 60);  
+    color: #fff;
 }
