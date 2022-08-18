@@ -37,27 +37,31 @@ function AddElemnt(selector,text){
 }
 
 let opDisplay = $(".entry")
-let reDisplay = $("#result")
+let reDisplay = $(".result")
+let newOperation = 0;
 //Bloco que trata das entradas
 let op = 0; // 0 -
 let num_ = [];
-let fNum = ''
+let fNum = '';
 function subValue(value){
     //console.log(value);
+    //Se for nova op limpar div 
+    if (newOperation == 1){
+        newOperation = 0;
+        clearElemnt(opDisplay)
+    }
     if (typeof(value) == "number") {
-        fNum += value
-        //console.log(fNum);
+        fNum += value;
+        //Adiciona os numeros na tela
         AddElemnt(opDisplay,value);
     } else {
-        console.log(typeof(value));
-        num_.push(fNum,value);
+        num_.push(fNum,value); // adc sinal
         //num_.push(value);
         if (typeof(value) != "number") {
-            fNum = ''
+            fNum = ''  //redefinir variavel para formar novo numero
         }
         if (value == '='){
             let result = 0;
-            clearElemnt(opDisplay)
             let num1 = parseFloat(num_[0]);
             let num2 = parseFloat(num_[2]);
             if (num_[1] == '/'){ // Sinal
@@ -69,8 +73,22 @@ function subValue(value){
             } else if (num_[1] == '+'){ // Sinal
                 result = num1 + num2;
             }
-            clearElemnt(reDisplay);
-            AddElemnt(reDisplay,result);
+            console.log(result);
+            clearElemnt(reDisplay); //Limpar resposta
+            let result_s = result.toString();
+            if  (result_s.indexOf('.') != -1){
+                result_s = result_s.slice(result_s.indexOf('.') + 1,result_s.length - 1)
+                console.log(result_s)
+            }
+            if (result_s.length > 4){
+                AddElemnt(reDisplay,result.toFixed(5));
+            }else{
+                AddElemnt(reDisplay,result);
+            }
+            //Preparar para nova resposta
+            newOperation = 1;
+            //resetar array q forma os numeros
+            num_ = [];
         }else {
             AddElemnt(opDisplay,' ' + value + ' ');
         }
@@ -86,9 +104,10 @@ function subValue(value){
 let color = 0 // 0-White 1-Black
 
 //Mode Dark
+
 function black(){
-    body.style.backgroundColor = "rgb(24,24,24)";
-    display.style.backgroundColor = "rgb(34,37,45)";
+    calculator.classList.toggle("b_dark");
+    display.style.backgroundColor = "rgb(16,15,32)";
     calculator.style.backgroundColor = "rgb(34,37,45)";
     keyboard.style.backgroundColor = "rgb(42,45,55)";
     for (i in input){
@@ -98,5 +117,6 @@ function black(){
 }
 
 function white(){
+    calculator.classList.toggle("body_calculator");
     console.log("White");
 }
